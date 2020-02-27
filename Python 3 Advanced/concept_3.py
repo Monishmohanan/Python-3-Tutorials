@@ -1,28 +1,23 @@
-from queue import Queue
-import inspect
+# META CLASSES 
 
-q = Queue()
-print(q)
+# create classes using type
+Test = type("Test", (), {"x":5})    #type(name, basis or parent class(must be a tuple), attribute)
+t = Test()
+print(t.x)
+t.wy = "hello"
+print(t.wy)
 
-print(inspect.getsource(Queue))
 
-#create a customised class inherited from a standard class using the dunder methods/ data models
-"""
-from queue import Queue as q
+class Foo:
+	def show(self):
+		print("hi")
 
-class Queue(q):
-	def __repr__(self):
-		return f"Queue({self._qsize()})"
 
-	def __add__(self, item):
-		self.put(item)
+def add_attribute(self):
+	self.z = 9
 
-	def __sub__(self, item):
-		self.get()
 
-qu = Queue()
-qu + 9
-qu + 7
-qu - None
-print(qu)
-""" 
+new = type('new', (Foo,), {"x":5, "add_attribute":add_attribute})
+m = new()
+m.add_attribute()
+print(m.z)
